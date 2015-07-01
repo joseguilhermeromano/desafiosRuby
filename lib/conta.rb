@@ -1,5 +1,6 @@
 class Conta
   attr_accessor :titular, :limite, :saldo, :numero
+
   def initialize(numero: numero, nome: nome, saldo: saldo, limite: limite)
     @numero = numero
     @titular = Cliente.new(nome: nome)
@@ -17,14 +18,14 @@ class Conta
   end
 
   def no_limite?
-    return @saldo < 0
+    @saldo < 0
   end
 
   def ==(other)
-    return other.titular.nome == self.titular.nome &&
-      other.limite    == self.limite &&
-      other.saldo     == self.saldo &&
-      other.numero    == self.numero
+    other.titular.nome == titular.nome &&
+      other.limite == limite &&
+      other.saldo == saldo &&
+      other.numero == numero
   end
 
   def transfere(conta_destino, valor_transferencia)
