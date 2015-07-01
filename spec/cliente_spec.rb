@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Cliente do
   it "deveria ser possivel criar uma pessoa" do
-    pending
     nome = "Jose"
     sobrenome = "da Silva"
     cpf = "111.111.111-00"
@@ -13,13 +12,11 @@ describe Cliente do
   end
 
   it "deveria ser possivel obter nome completo" do
-    pending
     cliente = cria_cliente
     expect(cliente.nome_completo).to eq "#{cliente.nome} #{cliente.sobrenome}"
   end
 
   it "deveria ter o nome completo com tratamento, quando houver tratamento" do
-    pending
     cliente = cria_cliente
     cliente.tratamento = "Sr."
     expect(cliente.nome_completo).
