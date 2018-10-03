@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe Recipe do
-  let(:pudim_json) { 'data/pudim.json' }
-  let(:feijoada_json) { 'data/feijoada.json' }
-  let(:recipe_json) { 'data/recipe.json' }
-  let(:recipes_json) { 'data/recipes.json' }
-
   it 'Instancia um objeto do tipo receita' do
     recipe = Recipe.new(title: 'Feijoada',
                         description: 'Você nunca comeu uma receita igual',
@@ -22,7 +17,7 @@ describe Recipe do
   end
 
   it 'Converte um json para um objeto do tipo receita' do
-    recipe = Recipe.from_json(pudim_json)
+    recipe = Recipe.from_json('data/pudim.json')
 
     expect(recipe.class).to eq Recipe
     expect(recipe.title).to eq 'Pudim'
@@ -33,7 +28,7 @@ describe Recipe do
   end
 
   it 'Converte outro json para um objeto do tipo receita' do
-    recipe = Recipe.from_json(feijoada_json)
+    recipe = Recipe.from_json('data/feijoada.json')
 
     expect(recipe.class).to eq Recipe
     expect(recipe.title).to eq 'Feijoada'
@@ -52,7 +47,7 @@ describe Recipe do
 
     recipe.save_to_file
 
-    expect(recipe.to_json).to include File.read(recipe_json)
+    expect(recipe.to_json).to include File.read('data/recipe.json')
   end
 
   it 'Converte outro objeto receita para json' do
@@ -64,11 +59,11 @@ describe Recipe do
 
     recipe.save_to_file
 
-    expect(recipe.to_json).to include File.read(recipe_json)
+    expect(recipe.to_json).to include File.read('data/recipe.json')
   end
 
   it 'Converte um json com array para array de objetos' do
-    recipes = Recipe.from_json(recipes_json)
+    recipes = Recipe.from_json('data/recipes.json')
 
     expect(recipes.class).to eq Array
     expect(recipes.count).to eq 2
