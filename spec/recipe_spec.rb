@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Recipe do
-  let(:pudim_json) { 'data/pudim.json' }
-  let(:feijoada_json) { 'data/feijoada.json' }
-
   it 'Instancia um objeto do tipo receita' do
     recipe = Recipe.new(title: 'Feijoada',
                         description: 'Você nunca comeu uma receita igual',
@@ -20,7 +17,7 @@ describe Recipe do
   end
 
   it 'Converte um json para um objeto do tipo receita' do
-    recipe = Recipe.from_json(pudim_json)
+    recipe = Recipe.from_json('data/pudim.json')
 
     expect(recipe.class).to eq Recipe
     expect(recipe.title).to eq 'Pudim'
@@ -31,7 +28,7 @@ describe Recipe do
   end
 
   it 'Converte outro json para um objeto do tipo receita' do
-    recipe = Recipe.from_json(feijoada_json)
+    recipe = Recipe.from_json('data/pudim.json')
 
     expect(recipe.class).to eq Recipe
     expect(recipe.title).to eq 'Feijoada'
