@@ -28,7 +28,7 @@ describe Recipe do
   end
 
   it 'Converte outro json para um objeto do tipo receita' do
-    recipe = Recipe.from_json('data/pudim.json')
+    recipe = Recipe.from_json('data/feijoada.json')
 
     expect(recipe.class).to eq Recipe
     expect(recipe.title).to eq 'Feijoada'
