@@ -26,22 +26,6 @@ feature 'Visitor view recipe details' do
     expect(page).to have_css('p', text: recipe.cook_method)
   end
 
-  scenario 'and view return button' do
-    #cria os dados necessários
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: 'Sobremesa',
-                           cuisine: 'Brasileira', difficulty: 'Médio',
-                           cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-
-    # simula a ação do usuário
-    visit root_path
-    click_on recipe.title
-
-    # expectativa da rota atual
-    expect(page).to have_css('a.btn.btn-secondary', text: 'Voltar')
-  end
-
   scenario 'and return to recipe list' do
     #cria os dados necessários
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: 'Sobremesa',
