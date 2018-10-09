@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 feature 'User update recipe' do
-  scenario 'view edit button' do
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    Recipe.create(title: 'Bolo de cenoura', difficulty: 'Médio',
-                  recipe_type: recipe_type, cuisine: 'Brasileira',
-                  cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-
-    visit root_path
-    click_on 'Bolo de cenoura'
-
-    expect(page).to have_css('a.btn.btn-primary', text: 'Editar')
-  end
-
   scenario 'successfully' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     RecipeType.create(name: 'Entrada')
@@ -63,7 +50,6 @@ feature 'User update recipe' do
     fill_in 'Ingredientes', with: ''
     fill_in 'Como Preparar', with: ''
     click_on 'Enviar'
-
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end

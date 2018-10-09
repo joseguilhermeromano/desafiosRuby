@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 feature 'User register recipe' do
-  scenario 'view send link' do
-    visit root_path
-
-    expect(page).to have_link('Home', href: root_path, class: 'nav-link')
-    expect(page).to have_link('Enviar uma receita', href: new_recipe_path,
-                                                    class: 'nav-link')
-  end
-
   scenario 'successfully' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     RecipeType.create(name: 'Sobremesa')
@@ -53,7 +45,6 @@ feature 'User register recipe' do
     fill_in 'Ingredientes', with: ''
     fill_in 'Como Preparar', with: ''
     click_on 'Enviar'
-
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
