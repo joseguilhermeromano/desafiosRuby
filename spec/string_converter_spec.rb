@@ -15,7 +15,7 @@ describe StringConverter do
 
   it 'converte frase para html iso 8859-1' do
     frase = "O João e o pé de feijão
-Essa é uma estória que fez parte da infncia das crianças nascidas nos anos 70 e
+Essa é uma estória que fez parte da infância das crianças nascidas nos anos 70 e
 80."
     frase_convertida = "O Jo&atilde;o e o p&eacute; de feij&atilde;o
 Essa &eacute; uma est&oacute;ria que fez parte da inf&acirc;ncia das crian&ccedil;as nascidas nos anos 70 e
