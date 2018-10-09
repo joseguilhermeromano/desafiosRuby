@@ -9,20 +9,17 @@ def menu()
   gets.to_i
 end
 
-def busca(tarefas)
-  puts 'Digite sua busca: '
+def busca()
+  print 'Digite sua busca: '
   busca = gets.strip
-  #tarefas = ['comprar pão', 'comprar leite', 'fazer bolo']
+  tarefas = ['comprar pão', 'comprar leite', 'fazer bolo']
   elementos_encontrados = []
   tarefas.each do |tarefa|
-      my_string = "abcdefg"
-	if my_string.include? "cde"
-	   puts "String includes 'cde'"
-	end
-#    if tarefa.include? busca == true
-#      elementos_encontrados << tarefa
-#    end
+    if tarefa.include? busca
+      elementos_encontrados << tarefa
+    end
   end
+  return elementos_encontrados
 end
 
 
@@ -49,8 +46,8 @@ while opcao != 4 do
 	end
 	puts
   when 3
-    elementos_encontrados = busca(tarefas)
-    puts elementos_encontrados
+    puts
+    puts "Resultado da busca: #{busca()}"
   when 4
     puts 'Programa encerrado...'
   else
