@@ -66,11 +66,40 @@ def concluir_tarefa(tarefas)
   puts
 end
 
+def gerar_arquivo(tarefas)
+  puts "gerando arquivo..."
+  File.open('task.txt', 'w') do |file|
+    tarefas.each do |tarefa|
+      file.write("#{tarefa[:tarefa]} - #{tarefa[:status]}\n")
+    end
+  end
+  puts "O arquivo foi gerando com sucesso..."
+end
+
+def carregar_lista(tarefas)
+  puts "carregando lista de tarefas..."
+  if File.exist? 'task.txt'
+    states_file = File.open('task.txt')
+    while ! states_file.eof?
+      line = states_file.gets.chomp.split(" - ")
+      tarefa = Hash.new
+      tarefa = {tarefa:line[0], status: line[1]}
+      tarefas.push(tarefa)
+    end
+    states_file.close
+    puts "Lista carregada com sucesso!"
+    puts
+  else
+  puts "Não há tarefas cadastradas!"
+  puts
+  end
+end
+
 
 opcao=0
 tarefas = []
+carregar_lista(tarefas)
 while opcao != 5 do
-  
   opcao = menu()
   system('clear')
   case opcao
@@ -84,6 +113,7 @@ while opcao != 5 do
   when 4
     concluir_tarefa(tarefas)
   when 5
+    gerar_arquivo(tarefas)
     puts 'Programa encerrado...'
   else
     puts
