@@ -9,13 +9,13 @@ def menu()
   gets.to_i
 end
 
-def busca()
+def busca(tarefas)
   print 'Digite sua busca: '
   busca = gets.strip
-  tarefas = ['comprar pão', 'comprar leite', 'fazer bolo']
+  #tarefas = ['comprar pão', 'comprar leite', 'fazer bolo']
   elementos_encontrados = []
   tarefas.each do |tarefa|
-    if tarefa.include? busca
+    if tarefa =~ /(?i:#{busca})/
       elementos_encontrados << tarefa
     end
   end
@@ -32,7 +32,7 @@ while opcao != 4 do
   case opcao
   when 1
     print 'Digite sua tarefa: '
-    tarefas.push(gets)
+    tarefas.push(gets.strip)
     puts
     puts 'Tarefa cadastrada: ' + tarefas . last
   when 2
@@ -47,7 +47,7 @@ while opcao != 4 do
 	puts
   when 3
     puts
-    puts "Resultado da busca: #{busca()}"
+    puts "Resultado da busca: #{busca(tarefas)}"
   when 4
     puts 'Programa encerrado...'
   else
