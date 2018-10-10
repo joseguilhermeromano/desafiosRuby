@@ -1,3 +1,4 @@
-comprar leite - false
-comprar pão - true
-fazer bolo - false
+comprar leite - Não concluída!
+comprar pão - Tarefa concluída!
+fazer bolo - Não concluída!
+enfeitar bolo - Tarefa concluída!
