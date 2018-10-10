@@ -1,2 +1,3 @@
 comprar leite - false
-comprar pão - Tarefa concluída!
+comprar pão - true
+fazer bolo - false

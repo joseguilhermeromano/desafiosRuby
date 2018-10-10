@@ -6,7 +6,7 @@ def menu()
   puts '[1] Inserir uma tarefa'
   puts '[2] Ver todas as tarefas'
   puts '[3] Buscar Tarefa'
-  puts '[4] Mudar o status de uma tarefa'
+  puts '[4] Alterar o status de uma tarefa'
   puts '[5] Sair'
   puts
   print 'Opção escolhida: '
@@ -36,33 +36,53 @@ def add_tarefa(tarefas)
   tarefa = {tarefa: gets.strip, status: false}
   tarefas.push(tarefa)
   puts
-  puts 'Tarefa cadastrada: ' + tarefas.last[:tarefa] + ' Status: ' + 
-  (tarefas.last[:status] == false && 'Tarefa ainda não realizada!')
+  status = tarefas.last[:status]
+  puts 'Tarefa cadastrada: ' + tarefas.last[:tarefa] + 
+  ' Status: ' + status_mensagem(status)
   puts 
 end
 
 def exibir_tarefas(tarefas)
   puts "--- Lista de Tarefas ---"
   puts
-	tarefas.each_with_index do |tarefa, index|
-    puts ' - ' + "##{ index } - Tarefa:  #{ tarefa[:tarefa] } " +
-    " - Status: #{ tarefa[:status] ||= 'Tarefa ainda não concluída!' || 
-    tarefa[:status] &&= 'Tarefa concluída!' }"
+  tarefas.each_with_index do |tarefa, index|
+    puts ' - ' + "##{ index } - Tarefa:  #{ tarefa[:tarefa] } " + 
+    " - Status: #{status_mensagem(tarefa[:status])}"
 	end
   puts
   puts
 end
 
-def concluir_tarefa(tarefas)
-  puts "--- Concluir Tarefa ---"
+def status_mensagem(status)
+  #status == true ? 'Tarefa concluída!' : 'Tarefa ainda não concluída!'
+  return ((status &&= 'Tarefa concluída!')||(status ||= 'Tarefa ainda não concluída!'))
+end
+
+def alterar_status(tarefas)
+  puts "--- Alterar Status ---"
   puts 
   exibir_tarefas(tarefas)
   print 'Digite o código da tarefa: '
   indice = gets.to_i
-  tarefas[indice][:status] = true
+  puts 'Escolha uma das opções:'
+  puts '1 - Para marcar tarefa concluída.'
+  puts '2 - Para marcar tarefa ainda não concluída.'
   puts 
-  puts "Tarefa atualizada: " + tarefas[indice][:tarefa] + " Status: " + 
-  (tarefas[indice][:status] &&= "Tarefa concluída!")
+  print 'opção: '
+  opcao = gets.to_i
+  if opcao != 1 && opcao != 2
+    system('clear')
+    puts 'opção inválida, tente novamente!'
+    alterar_status(tarefas)
+  elsif opcao == 1
+    tarefas[indice][:status] = true
+  else
+    tarefas[indice][:status] = false
+  end
+  puts 
+  status = tarefas[indice][:status]
+  puts "Tarefa atualizada: " + tarefas[indice][:tarefa] + 
+  " Status: " + status_mensagem(status)
   puts
 end
 
@@ -83,7 +103,9 @@ def carregar_lista(tarefas)
     while ! states_file.eof?
       line = states_file.gets.chomp.split(" - ")
       tarefa = Hash.new
-      tarefa = {tarefa:line[0], status: line[1]}
+      string_boolean = line[1]
+      status = string_boolean.to_s == "true" ? true : false
+      tarefa = {tarefa:line[0], status: status}
       tarefas.push(tarefa)
     end
     states_file.close
@@ -111,7 +133,7 @@ while opcao != 5 do
     puts
     puts "Resultado da busca: #{busca(tarefas)}"
   when 4
-    concluir_tarefa(tarefas)
+    alterar_status(tarefas)
   when 5
     gerar_arquivo(tarefas)
     puts 'Programa encerrado...'
