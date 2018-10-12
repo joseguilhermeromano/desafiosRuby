@@ -1,4 +1,6 @@
-require_relative 'Tarefa.rb'
+require_relative 'tarefa.rb'
+require_relative 'prazo.rb'
+require_relative 'imprimir_tarefas.rb'
 
 def menu()
   puts "--- Menu ---"
@@ -15,12 +17,16 @@ def menu()
   gets.to_i
 end
 
+#### MÉTODOS DE LÓGICA ESTRUTURADA 
+
 def busca(tarefas)
   puts "--- Buscar Tarefa ---"
   puts
   print 'Digite sua busca: '
   busca = gets.strip
-  elementos_encontrados = []
+  puts
+  puts '--- Resultados ---'
+  puts
   tarefas.each do |tarefa|
     if tarefa.descricao =~ /(?i:#{busca})/
       puts "Tarefa: #{ tarefa.descricao } - Status: #{ tarefa.status_texto }"
@@ -43,20 +49,20 @@ def exibir_tarefas(tarefas)
   puts "--- Lista de Tarefas ---"
   puts
   tarefas.each_with_index do |tarefa, index|
-    puts ' - ' + "##{ index } - Tarefa:  #{ tarefa.descricao } " + 
+    puts ' - ' + "##{ index+1 } - Tarefa:  #{ tarefa.descricao } " + 
     " - Status: #{ tarefa.status_texto }"
 	end
   puts
   puts
 end
 
-def alterar_status(tarefas)
+def concluir_tarefa(tarefas)
   puts "--- Concluir Tarefa ---"
   puts 
   exibir_tarefas(tarefas)
   print 'Digite o código da tarefa: '
   indice = gets.to_i
-  tarefas[indice].status = true
+  tarefas[indice-1].marcar_como_concluida
   puts 
   puts "Tarefa marcada como concluída!"
   puts
@@ -90,25 +96,35 @@ def carregar_lista(tarefas)
   end
 end
 
+#### FIM DOS MÉTODOS DE LÓGICA ESTRUTURADA 
+
 
 opcao=0
 tarefas = []
-carregar_lista(tarefas)
+#carregar_lista(tarefas)
+Tarefa.carregar_lista(tarefas)
 while opcao != 5 do
   opcao = menu()
   system('clear')
   case opcao
   when 1
-    add_tarefa(tarefas)
+    #add_tarefa(tarefas)
+    Prazo.nova_tarefa(tarefas)
   when 2
-    exibir_tarefas(tarefas)
+    #exibir_tarefas(tarefas)
+    puts "--- Lista de Tarefas ---"
+    puts
+    ImprimirTarefas.imprimir(tarefas)
   when 3
-    busca(tarefas)
+    #busca(tarefas)
+    Tarefa.buscar(tarefas)
     puts
   when 4
-    alterar_status(tarefas)
+    #concluir_tarefa(tarefas)
+    Tarefa.concluir_tarefa(tarefas)
   when 5
-    gerar_arquivo(tarefas)
+    #gerar_arquivo(tarefas)
+    Tarefa.gerar_arquivo(tarefas)
     puts 'Programa encerrado...'
   else
     puts

@@ -1,4 +1,3 @@
-comprar leite - Não concluída!
-comprar pão - Tarefa concluída!
+comprar leite - Tarefa concluída! - 10
+comprar pão - Não concluída!
 fazer bolo - Não concluída!
-enfeitar bolo - Tarefa concluída!
