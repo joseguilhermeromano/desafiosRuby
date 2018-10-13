@@ -13,7 +13,6 @@ describe ArrayUtils  do
 
   describe '.divisiveis' do
     it 'listar números entre 0 e 50 divisiveis por 3 e por 5, somente por 3 e somente por 5' do
-      pending
       expect(ArrayUtils.divisiveis(3,5)).to eq [
         [15, 30, 45],
         [3, 6, 9, 12, 18, 21, 24, 27, 33, 36, 39, 42, 48],
@@ -21,7 +20,6 @@ describe ArrayUtils  do
       ]
     end
     it 'listar números entre 0 e 50 divisiveis por 4 e por 6, somente por 4 e somente por 6' do
-      pending
       expect(ArrayUtils.divisiveis(4,6)).to eq [
         [12, 24, 36, 48],
         [4, 8, 16, 20, 28, 32, 40, 44],
@@ -32,7 +30,6 @@ describe ArrayUtils  do
 
   describe '.soma' do
     it 'deve somar todos os elementos do array' do
-      pending
       list = [4, 8, 16, 20, 28, 32, 40, 44]
       expect(ArrayUtils.soma(list)).to eq 192
 
@@ -43,7 +40,6 @@ describe ArrayUtils  do
 
   describe '.combinar' do
     it 'combinar dezenas e unidades' do
-      pending
       numeros = [1, 2, 3, 4, 5]
       letras = ["a", "b", "c", "d", "e"]
       expect(ArrayUtils.combinar(numeros, letras)).to eq [
