@@ -6,12 +6,10 @@ describe 'Array' do
   end
 
   it '3 multiplos de 6' do
-    pending
     expect(ArrayUtils.multiplos(3,6)).to eq [6, 12, 18]
   end
 
   it 'tabuada de 1 a 10' do
-    pending
     expect(ArrayUtils.tabuada(10)).to eq [
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
@@ -27,7 +25,6 @@ describe 'Array' do
   end
 
   it 'tabuada de 1 a 3' do
-    pending
     expect(ArrayUtils.tabuada(3)).to eq [
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
@@ -36,13 +33,11 @@ describe 'Array' do
   end
 
   it 'ultimo' do
-    pending
     lista = [2, 4, 56, 71]
     expect(ArrayUtils.ultimo(lista)).to eq 71
   end
 
   it 'ultimo hard!' do
-    pending
     lista = [56, 2, 4, 71, 6]
     allow(lista).to receive(:last).and_throw(Exception)
     expect(ArrayUtils.ultimo(lista)).to eq 6
