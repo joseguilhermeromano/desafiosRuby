@@ -10,7 +10,7 @@ class ArrayUtils
   def self.tabuada(qtd)
     array = []
     1.upto(10) do |numero|
-      array << ArrayUtils.multiplos(10, numero)
+      array << multiplos(10, numero)
       if array.length == qtd 
         break
       end
@@ -19,7 +19,6 @@ class ArrayUtils
   end
 
   def self.ultimo(lista)
-    tamanho = lista.length
-    lista[tamanho-1]
+    lista[-1]
   end
 end
