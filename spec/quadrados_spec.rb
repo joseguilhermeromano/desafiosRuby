@@ -8,11 +8,10 @@ describe Quadrados do
   it 'Soma do quadrado dos 5 primeiros primos' do
     expect(Quadrados.new(5).soma_dos_quadrados).to eq 208
   end
-
   it 'Diferença das somas e quadrados dos 5 primos' do
     expect(Quadrados.new(5).diferenca).to eq 576
   end
-
+  
   it 'Quadrado da soma dos 15 primeiros primos' do
     expect(Quadrados.new(15).quadrado_da_soma).to eq 107584
   end
