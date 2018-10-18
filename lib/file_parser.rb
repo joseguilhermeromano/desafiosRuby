@@ -1,13 +1,6 @@
 class FileParser
   def to_integer(binary)
-    digits = binary.to_s.chars.map(&:to_i)
-    potentials = []
-    i = 0
-    digits.reverse_each do |element|
-      potentials << (element * (2**i)) 
-      i += 1
-    end
-    potentials.inject(:+)
+    binary.to_i(2)
   end
 
   def convert(path_name)
