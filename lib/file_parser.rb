@@ -4,14 +4,13 @@ class FileParser
   end
 
   def convert(path_name)
-    numbers = []
+    sum = 0
     if File.exist? path_name
-        states_file = File.open(path_name)
-        while ! states_file.eof?
-          line = states_file.gets.chomp
-          numbers << to_integer(line)
+        data = File.read(path_name)
+        data.each_line do |line|
+          sum += to_integer(line)
         end
     end
-    numbers.inject(:+)
+    sum
   end
 end
