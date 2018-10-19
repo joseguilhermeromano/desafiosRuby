@@ -20,4 +20,15 @@ class Recipe
                cook_time: attributes['cook_time'],
                featured: attributes['featured'])
   end
+
+  def save_to_file
+    file = "data/recipe.json"
+    if not File.exist? file
+      File.new file
+    end
+    File.open(file, "w") do |f|
+      f.write to_json
+    end
+  end
+
 end
