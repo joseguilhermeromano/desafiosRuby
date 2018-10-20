@@ -10,6 +10,9 @@ class Recipe
     @ingredients = ingredients
     @cook_time = cook_time
     @featured = featured
+    if featured
+      customizer_json
+    end
   end
 
   def self.from_json(json_file)
@@ -40,4 +43,13 @@ class Recipe
       f.print to_json
     end
   end
+
+  def customizer_json
+    @self = { :title => "[Destaque] #{self.title}",
+              :description => self.description.to_s,
+              :ingredients => self.ingredients.to_s,
+              :cook_time => "#{self.cook_time} minutos"
+            }
+  end
+
 end
