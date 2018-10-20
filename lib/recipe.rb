@@ -14,11 +14,24 @@ class Recipe
 
   def self.from_json(json_file)
     attributes = JSON.parse(File.read(json_file))
-    Recipe.new(title: attributes['title'],
-               description: attributes['description'],
-               ingredients: attributes['ingredients'],
-               cook_time: attributes['cook_time'],
-               featured: attributes['featured'])
+    if attributes.is_a? (Hash)
+      Recipe.new(title: attributes['title'],
+                description: attributes['description'],
+                ingredients: attributes['ingredients'],
+                cook_time: attributes['cook_time'],
+                featured: attributes['featured'])
+    else
+      recipes = []
+      attributes.each do |attribute|
+        recipe = Recipe.new(title: attribute['title'],
+                            description: attribute['description'],
+                            ingredients: attribute['ingredients'],
+                            cook_time: attribute['cook_time'],
+                            featured: attribute['featured'])
+        recipes << recipe
+      end
+      recipes
+    end
   end
 
   def save_to_file
