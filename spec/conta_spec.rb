@@ -3,12 +3,16 @@ require 'spec_helper'
 describe Conta do
   it "deveria conseguir criar um objeto do tipo Conta" do
     numero = "2303-2"
-    nome = "Jose da Silva"
+    nome = "Jose"
+    sobrenome = "da Silva"
+    cpf = "000.000.000-00"
     saldo = 1000.10
     limite = 500
     conta = cria_conta
     expect(conta.numero).to eq numero
     expect(conta.titular.nome).to eq nome
+    expect(conta.titular.sobrenome).to eq sobrenome
+    expect(conta.titular.cpf).to eq cpf
     expect(conta.limite).to eq limite
     expect(conta.saldo).to eq saldo
   end
@@ -60,7 +64,8 @@ describe Conta do
   it "deveria ter novo saldo após tranferencia" do
     conta_origem = cria_conta
     saldo_anterior_origem = conta_origem.saldo
-    conta_destino = cria_conta("3432-2", "Zenildo Bispo", 4000.54)
+    conta_destino = cria_conta("3432-2", "Zenildo", "Bispo",
+     "111.111.111-11", 4000.54)
     saldo_anterior_destino = conta_destino.saldo
     valor_transferencia = 560.40
     conta_origem.transfere(conta_destino, valor_transferencia)
@@ -85,7 +90,9 @@ describe Conta do
     expect(conta.titular).to be_a(Cliente)
   end
 
-  def cria_conta(numero="2303-2", nome="Jose da Silva", saldo=1000.10, limite=500)
-    Conta.new(numero: numero, nome: nome, saldo: saldo, limite: limite)
+  def cria_conta(numero="2303-2", nome="Jose", sobrenome="da Silva",
+                 cpf="000.000.000-00", saldo=1000.10, limite=500)
+    Conta.new(numero: numero, nome: nome, sobrenome: sobrenome,
+              cpf: cpf, saldo: saldo, limite: limite)
   end
 end

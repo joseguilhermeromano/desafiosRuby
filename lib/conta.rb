@@ -1,9 +1,10 @@
 class Conta
   attr_accessor :titular, :limite, :saldo, :numero
 
-  def initialize(numero:, nome:, saldo:, limite:)
+  def initialize(numero:, nome:, sobrenome:, 
+                 cpf:, saldo:, limite:)
     @numero = numero
-    @titular = Cliente.new(nome: nome)
+    @titular = Cliente.new(nome: nome, sobrenome: sobrenome, cpf: cpf)
     @saldo = saldo
     @limite = limite
   end
