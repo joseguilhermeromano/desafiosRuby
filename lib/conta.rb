@@ -1,9 +1,13 @@
 class Conta
   attr_accessor :titular, :limite, :saldo, :numero
 
-  def initialize(numero: numero, nome: nome, saldo: saldo, limite: limite)
+  def initialize(numero: numero, nome: nome, titular: titular, saldo: saldo, limite: limite)
     @numero = numero
-    @titular = Cliente.new(nome: nome)
+    if nome 
+      @titular = Cliente.new(nome: nome)
+    else
+      @titular = titular
+    end
     @saldo = saldo
     @limite = limite
   end
@@ -31,5 +35,9 @@ class Conta
   def transfere(conta_destino, valor_transferencia)
     conta_destino.saldo += valor_transferencia
     sacar(valor_transferencia)
+  end
+
+  def atualizar(valor_atualizado=saldo)
+    @saldo = valor_atualizado
   end
 end
