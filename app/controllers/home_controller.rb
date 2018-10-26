@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     @recipes = Recipe.all
   end
 
-  def recipe_details
+  def show
     @recipe = Recipe.find(params[:id])
   end
 end
