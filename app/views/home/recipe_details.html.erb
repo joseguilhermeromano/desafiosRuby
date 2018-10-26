@@ -1,0 +1,16 @@
+<h1><%= @recipe.title %></h1>
+<br>
+<h3>Detalhes</h3>
+<br>
+<p><%= @recipe.recipe_type %></p>
+<p><%= @recipe.cuisine %></p>
+<p><%= @recipe.difficulty %></p>
+<p><%= @recipe.cook_time_min %></p>
+<br>
+<h3>Ingredientes</h3>
+<br>
+<p><%= @recipe.ingredients %></p>
+<h3>Como Preparar</h3>
+<p><%= @recipe.cook_method %></p>
+<br><br>
+<%= link_to 'Voltar', root_path %>
