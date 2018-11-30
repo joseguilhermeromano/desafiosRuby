@@ -1,0 +1,15 @@
+<ul>
+  <% @task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+
+<%= form_for @task do |f| %>
+  <%= f.label :description, 'Descrição' %>
+  <%= f.text_field :description %>
+  <%= f.label :status, 'Status' %>
+  <%= f.label :category_id, 'Categoria' %>
+  <%= f.collection_select(:category_id, @categories, :id, :name) %>
+  <%= f.check_box :status %>
+  <%= f.submit 'Editar' %>
+<% end %>
